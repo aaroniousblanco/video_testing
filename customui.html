@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video!</title>
+  <script src='http://w3.cdn.anvato.net/player/stage/v3/scripts/anvload.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="view.css"> <!-- link to view stylesheet; temporary since the
+  styling for this ticket is mainly targeting the iframe itself. -->
+</head>
+<body>
+    <div class="video-container">
+        <div id="anvato-player"></div>
+    </div>
+<script>
+  AnvatoPlayer('anvato-player').init({
+    url: "https://mcp-download.s3.amazonaws.com/anv-videos/variant/3697661.m3u8",
+    title: "This is the video headline.",
+    width: '100%',
+    recom: true,
+    poster: 'http://mcp-media.s3.amazonaws.com/anv-pvw/B98/C0D/B98C0DBDD0404D56AD70119379477993_6.jpg',
+    customUIController: {
+      showUIComponents: {
+        control: false,
+        splash: false,
+        captionSetting: true,
+        preview: true,
+        share: true
+      },
+      loadAssets: [
+        {
+          type: "stylesheet",
+          url: "test.css"
+        },
+        {
+          type: "script",
+          url: "controller.js"
+        },
+        {
+          type: "view",
+          url: "view.html"
+        }
+      ]
+    }
+  })
+</script>
+</body>
+</html>

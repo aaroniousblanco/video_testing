@@ -1,0 +1,202 @@
+.splash {
+  background: #000;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  opacity: 1;
+}
+
+.unmute {
+    background-color: white;
+    display: inline-block;
+    left: 10;
+}
+
+.video-container {
+    margin: 0 auto;
+    width: 75%;
+    min-width: 400px;
+}
+
+.splash .title, .splash .description {
+  color: white;
+  padding: 20px 20px 0;
+}
+
+.splash .title {
+  font-size: 20px;
+}
+/* selected below is for main play button during preview */
+.play img {
+  width: 40%;
+  position: absolute;
+  bottom: 0;
+}
+
+.splash .play {
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  background-color: red;
+}
+
+.splash[data-mode='loadScreen'] .play{
+  display: block;
+}
+
+.splash[data-mode='loadScreen'] ~ .control{
+  display: none;
+}
+
+.custom-ui[data-buffering='on'] .play{
+  display: none;
+}
+
+.custom-ui[data-buffering='on'] .spinner{
+  display: block;
+}
+
+.splash[data-mode='hoverScreen'] {
+  background: none;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.spinner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  -webkit-animation: spin 2s linear infinite;
+  -moz-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  display: none;
+}
+
+.spinner svg {
+  fill: white;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.control {
+  background: rgba(0, 0, 0, .8);
+  bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  visibility: visible;
+}
+
+.control .progress {
+  width: 0;
+  background: white;
+  height: 5px;
+}
+
+.control .button svg {
+  fill: white;
+}
+.control .button {
+  width: 64px;
+  height: 64px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.control .play-pause[data-state='playing'] .paused {
+  display: none;
+}
+
+.clickable[data-state='playing'] .paused { /* This hides the splash play button */
+  display: none;
+}
+
+.control .play-pause[data-state='paused'] .playing {
+  display: none;
+}
+
+.control .time {
+  display: none;
+}
+
+.control .time .text {
+  color: white;
+  line-height: 64px;
+  font-size: 24px;
+}
+
+.control .time[data-state='live'] .vod {
+  display: none;
+}
+
+.control .time[data-state='vod'] .live {
+  display: none;
+}
+
+.control .fullscreen[data-state='off'] .on {
+  display: none;
+}
+
+.control .fullscreen[data-state='on'] .off {
+  display: none;
+}
+
+.control[data-state='responsive'] { /* this toggles to responsive when  */
+  overflow: hidden;
+  bottom: -64px;
+  transition: all .5s;
+}
+
+.control[data-state='hidden'] {
+  overflow: hidden;
+  bottom: -64px;
+}
+
+.control:hover {
+  overflow: hidden;
+  bottom: 0;
+}
+
+.control .timeline:hover .progress {
+  height: 10px;
+  transition: all .2s;
+  cursor: pointer;
+}
+.control .timeline:hover {
+  cursor: pointer;
+}
+
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
