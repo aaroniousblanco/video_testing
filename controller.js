@@ -8,11 +8,11 @@ var parentElement, mediator, captionProps, fullscreenSupport,
 
 var totalDuration, currentTime;
 
-var log = function() {
-  console.log.apply(
-      console,
-      ['[Controller]\t'].concat(Array.prototype.slice.call(arguments)));
-};
+// var log = function() {
+//   console.log.apply(
+//       console,
+//       ['[Controller]\t'].concat(Array.prototype.slice.call(arguments)));
+// };
 
 //////////////BEGIN CONTROL CONFIGURATION//////////////////////////
 
@@ -41,25 +41,55 @@ ControlBar.prototype.init = function(node, w, h) {
     var seekIndex = getSeekIndex(e, this);
     mediator.publish('seekRequest', seekIndex);
   };
-  getElementFromClassPath('social').onclick = function() {
-        if (!mediator.test || mediator.test === 0) {
-          mediator.publish('toggleSharePanel');
-          mediator.test = 1;
-        } else if (mediator.test === 1) {
-          mediator.publish('toggleSharePanel');
-          mediator.test = 0;
-        }
-      };
+  getElementFromClassPath('social:more-icon').onclick = function() {
+        let moreSocialDrawer = getElementFromClassPath('more-social-drawer');
+        let toggledState = moreSocialDrawer.getAttribute('data-state');
+        moreSocialDrawer.setAttribute('data-state', toggledState === 'visible' ?
+        'hidden' : 'visible');
+        let elementsArray = moreSocialDrawer.getElementsByClassName('social-drawer-icons');
+        for (var i = 0; i < elementsArray.length; i++) {
+            elementsArray[i].setAttribute('data-state', toggledState === 'visible' ? 'hidden' : 'visible');
+        };
+  };
+  getElementFromClassPath('social:facebook-icon').onclick = function() {
+        console.log('face');
+  };
+  getElementFromClassPath('social:twitter-icon').onclick = function() {
+        console.log('twit');
+  };
   getElementFromClassPath('volume > svg').onclick = function() { //toggles the volume slider
-      let volumeBar = getElementFromClassPath('volume-bar')
+      let volumeBar = getElementFromClassPath('volume-bar');
       let toggledState = volumeBar.getAttribute('data-state');
-      volumeBar.setAttribute('data-state', toggledState === 'active' ?
-      'inactive' : 'active');
+      volumeBar.setAttribute('data-state', toggledState === 'visible' ?
+      'hidden' : 'visible');
   };
-  getElementFromClassPath('volume-bar:volume-meter').onclick = function(e) {
-    var seekIndexVolume = getSeekIndexVolume(e, this);
-    mediator.publish('volumeUpdate', seekIndexVolume);
+  // let test = getElementFromClassPath('volume-bar:volume-meter');
+  // test.onmousedown = (e) => {
+  //     console.log('aaron',e);
+  //     test.bind('onmousemove', (e) => {//beginning of the slider functionality
+  //         console.log('first', e);
+  //     });
+  // };
+
+
+  getElementFromClassPath('volume-bar:volume-meter').onmousedown = function(e) {
+    var results = getSeekIndexVolume(e, this);
+    mediator.publish('volumeUpdate', results.index); //update the volume based on y-index corresponding to user selection
+    getElementFromClassPath('volume-meter-bar').style.height =
+    results.ownerHeight - (results.index * results.ownerHeight); //the diff b/w height
+    //of volume-meter and user selected volume; we use this to update the height of the slider (volume-meter-bar)
   };
+  getElementFromClassPath('custom-ui').onmouseleave = function () { //toggles the volume slider to "inactive"
+  //to coincide with the control being set to "responsive" (hidden after a 3000 ms delay) once the mouse exits the iframe
+    var test = getElementFromClassPath('volume-bar');
+    setTimeout(function () { test.setAttribute('data-state', 'hidden') }, 3000);
+  };
+  // getElementFromClassPath('custom-ui').ontouchend = function () { //toggles the volume slider to "inactive"
+  // //to coincide with the control being set to "responsive" (hidden after a 3000 ms delay) once the mouse exits the iframe
+  //   var test = getElementFromClassPath('volume-bar');
+  //   setTimeout(function () { test.setAttribute('data-state', 'inactive') }, 3000);
+  // };
+
 };
 
 ControlBar.prototype.updateDuration = function(index) {
@@ -355,8 +385,8 @@ function getSeekIndexVolume(e, owner) { //UPDATED by AW
   y = (y < 0) ? 0 : y;
   y = (y > ownerHeight) ? ownerHeight : y;
   seekIndex = 1 * y / ownerHeight;
-  seekIndexVolume = (1 - seekIndex) * 1;
-  return seekIndexVolume;
+  index = (1 - seekIndex) * 1;
+  return { index, ownerHeight};
 }
 
 function getCumulativeOffset(obj) {

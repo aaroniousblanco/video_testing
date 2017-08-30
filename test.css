@@ -23,6 +23,7 @@
 .topbar .title {
   color: white;
   padding: 17px 20px 0;
+  display: inline-block;
 }
 
 .splash .title {
@@ -147,7 +148,7 @@
 .control .button {
   width: 52px;
   height: 52px;
-  margin-left: 5px;
+  margin: 3px 0 0 5px;
   cursor: pointer;
 }
 
@@ -276,11 +277,11 @@ svg.off:hover, svg.on:hover, #settings:hover, #volume:hover {
     fill: #ffffff;
 }
 
-.volume-bar[data-state='inactive'] {
+.volume-bar[data-state='hidden'] {
     display: none;
 }
 
-.volume-bar[data-state='active'] {
+.volume-bar[data-state='visible'] {
     position: absolute;
     background-color: rgba(0, 0, 0, .8);
     bottom: 62;
@@ -292,11 +293,85 @@ svg.off:hover, svg.on:hover, #settings:hover, #volume:hover {
 .volume-meter {
     width: 5px;
     height: 100%;
-    background-color: dimgrey;
+    background-color: white;
     border: 1px solid white;
     border-radius: 5px;
 }
 
 .volume-meter-bar {
-    background-color: white;
+    background-color: dimgrey;
+}
+
+.social {
+    display: inline-block;
+}
+
+.more-icon {
+    padding: 7px;
+    position: absolute;
+    right: 19px;
+    top: 18px;
+}
+
+.twitter-icon {
+    position: absolute;
+    right: 80px;
+    top: 13px;
+    padding: 5px;
+}
+
+.facebook-icon {
+    position: absolute;
+    right: 150px;
+    top: 11px;
+    padding: 5px;
+}
+
+.social div:hover svg {
+    cursor: pointer;
+    fill: #ffffff;
+}
+
+.volume-bar[data-state='hidden'] {
+    display: none;
+}
+
+.more-social-drawer[data-state='visible'] {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .8);
+    top: 62px;
+    right: 0;
+    width: 30%;
+    padding: 12px;
+    height: 60%;
+}
+
+.social-drawer-icons[data-state='hidden'] {
+    display: none;
+}
+
+.social-drawer-icons[data-state='visible'] {
+    display: block;
+    margin-left: 5%;
+    margin-top: 5px;
+}
+
+.more-social-drawer div:nth-child(1) div { 
+    position: absolute;
+    /* display: inline-block; */
+    top: 38px;
+    color: white;
+    /* margin-left: 10px; */
+    left: 90px;
+    /* margin-bottom: 4px; */
+}
+
+#reddit-icon {
+    width: 47.6px;
+    height: 47.6px;
+}
+
+#pinterest-icon {
+    width: 39px;
+    height: 39px;
 }
