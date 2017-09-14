@@ -98,13 +98,18 @@
             socialDrawerVisibility('hidden');
         };
         facebookIcon.onclick = function() {
-            for (key in anvp) {
-                if (typeof anvp[key] === "object" && anvp[key].config) {
-                    var embedCode = top.cmg.anvatoConf.embedCodes[key];
-                    var availableBitrates = top.cmg.anvatoConf.bitrates[key];
-                    console.log('aarontest', embedCode, availableBitrates);
-                }
-            }
+            let width = "600px",
+                height = "280px",
+                left = "400px",
+                top = "400px"
+            window.open(
+            'https://www.facebook.com/share.php?u=http%3A%2F%2Fpreview-dev.ajc.com%2Fsports%2Fthis-headline%2FrVhegVlNXB2WfZBIKsNUIO%2F&title=%22This%20is%20my%20%E2%80%9CHeadline',
+            '_blank',
+            'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
+            'titlebar=no,copyhistory=no,scrollbars=yes,' +
+            'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left,
+            false
+            );
         };
         twitterIcon.onmouseover = function() {
             uiComponentVisibility(volumeBar, 'hidden');
@@ -112,8 +117,62 @@
             socialDrawerVisibility('hidden');
         };
         twitterIcon.onclick = function() {
-            // window.open(top.location('ajc.com'));
-            top.location = 'https://stackoverflow.com/questions/13587599/how-to-use-window-open-in-a-iframe';
+            let width = "600px",
+                height = "280px",
+                left = "400px",
+                top = "400px"
+            window.open(
+            'https://twitter.com/intent/tweet?url=http%3A%2F%2Fpreview-dev.ajc.com%2Fsports%2Fthis-headline%2FrVhegVlNXB2WfZBIKsNUIO%2F&text=%22This%20is%20my%20%E2%80%9CHeadline',
+            '_blank',
+            'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
+            'titlebar=no,copyhistory=no,scrollbars=yes,' +
+            'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left,
+            false
+            );
+        }
+        getElementFromClassPath('pinterest-share').onclick = function() {
+            let width = "600px",
+                height = "280px",
+                left = "400px",
+                top = "400px"
+            window.open(
+            'https://pinterest.com/pin/create/button/?url=&media=&description=',
+            '_blank',
+            'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
+            'titlebar=no,copyhistory=no,scrollbars=yes,' +
+            'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left,
+            false
+            );
+        }
+        getElementFromClassPath('reddit-share').onclick = function() {
+            let width = "600px",
+                height = "280px",
+                left = "400px",
+                top = "400px"
+            window.open(
+            'https://reddit.com/submit?url=&title=',
+            '_blank',
+            'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
+            'titlebar=no,copyhistory=no,scrollbars=yes,' +
+            'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left,
+            false
+            );
+        }
+        getElementFromClassPath('email-video').onclick = function() {
+
+        }
+        getElementFromClassPath('copy-embed').onclick = function() {
+            for (key in anvp) {
+                if (typeof anvp[key] === "object" && anvp[key].config) {
+                    var embedCode = top.cmg.anvatoConf.embedCodes[key];
+                    var availableBitrates = top.cmg.anvatoConf.bitrates[key];
+                    console.log('aarontest', embedCode, availableBitrates);
+                }
+            }
+            function copyToClipboard(text) { //THIS IS TEMPORARY
+                window.prompt("Copy embed code to clipboard: Ctrl+C, Enter", text);
+            }
+            copyToClipboard(embedCode);
         }
         ////VOLUME SETTINGS /////////////////////////
         volumeButton.onmouseover = function() { //toggles the volume slider

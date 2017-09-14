@@ -55,9 +55,6 @@
   display: none;
 }
 
-/*.custom-ui[data-buffering='on'] .spinner{
-  display: block;
-}*/
 
 .splash[data-mode='hoverScreen'] {
   background: none;
@@ -136,7 +133,7 @@
   right: 0;
   visibility: visible;
   height: 52px;
-  padding: 5px;
+  /*padding: 5px;*/
 }
 
 .control .progress {
@@ -284,7 +281,7 @@ svg.off:hover, svg.on:hover, #settings:hover, #volume:hover {
 .volume-bar[data-state='visible'] {
     position: absolute;
     background-color: rgba(0, 0, 0, .8);
-    bottom: 62;
+    bottom: 52;
     right: 144;
     padding: 12px;
     height: 30%;
@@ -326,14 +323,14 @@ svg.off:hover, svg.on:hover, #settings:hover, #volume:hover {
 .twitter-icon {
     position: absolute;
     right: 80px;
-    top: 13px;
+    top: 10px;
     padding: 5px;
 }
 
 .facebook-icon {
     position: absolute;
     right: 150px;
-    top: 11px;
+    top: 8px;
     padding: 5px;
 }
 
@@ -349,7 +346,7 @@ svg.off:hover, svg.on:hover, #settings:hover, #volume:hover {
 .quality-drawer[data-state='visible'] {
     position: absolute;
     background-color: rgba(0, 0, 0, .8);
-    bottom: 62;
+    bottom: 52;
     right: 50;
     padding: 12px;
     text-align: center;
