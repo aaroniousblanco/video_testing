@@ -10,9 +10,10 @@
 </head>
 <body>
     <div class="video-container">
-        <div id="anvato-player"></div>
+        <div id="anvato-player" data-state="jenny"></div>
     </div>
 <script>
+
   AnvatoPlayer('anvato-player').init({
     url: "https://mcp-download.s3.amazonaws.com/anv-videos/variant/3697661.m3u8",
     title: "This is the video headline.",
@@ -27,7 +28,7 @@
         captionSetting: true,
         preview: true,
         share: true,
-        endscreen: true
+        endscreen: false
       },
       loadAssets: [
         {

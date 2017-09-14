@@ -20,9 +20,10 @@
     min-width: 400px;
 }
 
-.splash .title, .splash .description {
+.topbar .title {
   color: white;
-  padding: 20px 20px 0;
+  padding: 17px 20px 0;
+  display: inline-block;
 }
 
 .splash .title {
@@ -54,9 +55,9 @@
   display: none;
 }
 
-.custom-ui[data-buffering='on'] .spinner{
+/*.custom-ui[data-buffering='on'] .spinner{
   display: block;
-}
+}*/
 
 .splash[data-mode='hoverScreen'] {
   background: none;
@@ -66,26 +67,26 @@
   cursor: pointer;
 }
 
-.spinner {
+/*.spinner {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   margin: auto;
   -webkit-animation: spin 2s linear infinite;
   -moz-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
   display: none;
-}
+}*/
 
-.spinner svg {
+/*.spinner svg {
   fill: white;
-}
+}*/
 
-@-moz-keyframes spin {
+/*@-moz-keyframes spin {
   100% {
     -moz-transform: rotate(360deg);
   }
@@ -102,6 +103,29 @@
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}*/
+
+
+.topbar {
+  background: rgba(0, 0, 0, .8);
+  top: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  visibility: visible;
+  height: 52px;
+  padding: 5px;
+}
+
+.topbar[data-state='responsive'] { /* this toggles to responsive when  */
+  overflow: hidden;
+  top: -64px;
+  transition: all .5s;
+}
+
+.topbar[data-state='hidden'] {
+  overflow: hidden;
+  top: -64px;
 }
 
 .control {
@@ -111,6 +135,8 @@
   left: 0;
   right: 0;
   visibility: visible;
+  height: 52px;
+  padding: 5px;
 }
 
 .control .progress {
@@ -119,13 +145,10 @@
   height: 5px;
 }
 
-.control .button svg {
-  fill: white;
-}
 .control .button {
-  width: 64px;
-  height: 64px;
-  margin-left: 5px;
+  width: 52px;
+  height: 52px;
+  margin: 3px 0 0 5px;
   cursor: pointer;
 }
 
@@ -142,13 +165,12 @@
 }
 
 .control .time {
-  display: none;
+  display: inline-block !important;
 }
 
 .control .time .text {
-  color: white;
-  line-height: 64px;
-  font-size: 24px;
+  color: dimgrey;
+  line-height: 44px;
 }
 
 .control .time[data-state='live'] .vod {
@@ -167,15 +189,17 @@
   display: none;
 }
 
-.control[data-state='responsive'] { /* this toggles to responsive when  */
+.control[data-state='responsive'] {
   overflow: hidden;
-  bottom: -64px;
+  bottom: -69px; /* adjusted the height so the progress bar (height - 5px) is hidden when control's
+  hidden */
   transition: all .5s;
 }
 
 .control[data-state='hidden'] {
   overflow: hidden;
-  bottom: -64px;
+  bottom: -69px; /* adjusted the height so the progress bar (height - 5px) is hidden when control's
+  hidden */
 }
 
 .control:hover {
@@ -183,12 +207,18 @@
   bottom: 0;
 }
 
-.control .timeline:hover .progress {
-  height: 10px;
-  transition: all .2s;
+.control-container:hover .topbar {
+  overflow: hidden;
+  top: 0;
+}
+
+.control .time-line:hover .progress {
+  /*height: 10px;
+  transition: all .2s;*/
   cursor: pointer;
 }
-.control .timeline:hover {
+
+.control .time-line:hover {
   cursor: pointer;
 }
 
@@ -199,4 +229,213 @@
 
 .right {
   float: right;
+}
+
+.time-container {
+    width: 70%;
+}
+
+.time, .vod {
+    width: 100%;
+}
+
+.time {
+    margin-top: 3px;
+}
+
+.time-line {
+    width: 74%;
+    margin-top: 22px;
+    background-color: dimgrey;
+    margin: 20px 10px;
+    position: relative;
+}
+
+.progress-icon {
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    border-radius: 100px;
+    position: absolute;
+    bottom: -5px;
+}
+
+#settings, #volume {
+    margin-top: 8px;
+    fill: #696969;
+}
+
+svg.paused, svg.playing {
+    fill: #ffffff;
+}
+
+svg.on, svg.off {
+    fill: #696969;
+}
+
+svg.off:hover, svg.on:hover, #settings:hover, #volume:hover {
+    fill: #ffffff;
+}
+
+.volume-bar[data-state='hidden'] {
+    display: none;
+}
+
+.volume-bar[data-state='visible'] {
+    position: absolute;
+    background-color: rgba(0, 0, 0, .8);
+    bottom: 62;
+    right: 144;
+    padding: 12px;
+    height: 30%;
+}
+
+.volume-meter {
+    width: 5px;
+    height: 100%;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.volume-meter-bar {
+    background-color: dimgrey;
+}
+
+.volume-icon {
+  width: 17px;
+  height: 17px;
+  border-radius: 100px;
+  background-color: white;
+  position: absolute;
+  left: 7px;
+  top: 7px;
+}
+
+.social {
+    display: inline-block;
+}
+
+.more-icon {
+    padding: 7px;
+    position: absolute;
+    right: 19px;
+    top: 18px;
+}
+
+.twitter-icon {
+    position: absolute;
+    right: 80px;
+    top: 13px;
+    padding: 5px;
+}
+
+.facebook-icon {
+    position: absolute;
+    right: 150px;
+    top: 11px;
+    padding: 5px;
+}
+
+.social div:hover svg {
+    cursor: pointer;
+    fill: #ffffff;
+}
+
+.quality-drawer[data-state='hidden'] {
+    display: none;
+}
+
+.quality-drawer[data-state='visible'] {
+    position: absolute;
+    background-color: rgba(0, 0, 0, .8);
+    bottom: 62;
+    right: 50;
+    padding: 12px;
+    text-align: center;
+}
+
+.bitrate-button {
+    margin: 0 auto;
+    color: #696969;
+}
+
+.bitrate-button div:hover {
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.volume-bar:hover {
+    cursor: pointer;
+}
+
+.more-social-drawer[data-state='visible'] {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .8);
+    top: 62px;
+    right: 0;
+    width: 30%;
+    padding: 12px;
+    height: 60%;
+}
+
+.social-drawer-icons[data-state='hidden'] {
+    display: none;
+}
+
+.social-drawer-icons[data-state='visible'] {
+    display: block;
+    margin-left: 5%;
+    margin-top: 5px;
+}
+
+/* UPDATE THE STYLING FOR THE DRAWERS BELOW!!! */
+.more-social-drawer div:nth-child(1) div {
+    position: absolute;
+    top: 38px;
+    color: white;
+    left: 90px;
+}
+
+.more-social-drawer div:nth-child(2) div {
+    position: absolute;
+    top: 88px;
+    color: white;
+    left: 90px;
+}
+
+.more-social-drawer div:nth-child(3) div {
+    position: absolute;
+    top: 136px;
+    color: white;
+    left: 90px;
+}
+
+.more-social-drawer div:nth-child(4) div {
+    position: absolute;
+    top: 186px;
+    color: white;
+    left: 90px;
+}
+
+.more-social-drawer div:nth-child(5) div {
+    position: absolute;
+    top: 234px;
+    color: white;
+    left: 90px;
+}
+
+.more-social-drawer div:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#reddit-icon {
+    width: 47.6px;
+    height: 47.6px;
+}
+
+#pinterest-icon {
+    width: 39px;
+    height: 39px;
 }

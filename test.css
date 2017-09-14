@@ -165,7 +165,7 @@
 }
 
 .control .time {
-  display: none;
+  display: inline-block !important;
 }
 
 .control .time .text {
@@ -251,7 +251,7 @@
     position: relative;
 }
 
-.volume-icon {
+.progress-icon {
     width: 16px;
     height: 16px;
     background-color: white;
@@ -302,6 +302,16 @@ svg.off:hover, svg.on:hover, #settings:hover, #volume:hover {
     background-color: dimgrey;
 }
 
+.volume-icon {
+  width: 17px;
+  height: 17px;
+  border-radius: 100px;
+  background-color: white;
+  position: absolute;
+  left: 7px;
+  top: 7px;
+}
+
 .social {
     display: inline-block;
 }
@@ -332,8 +342,31 @@ svg.off:hover, svg.on:hover, #settings:hover, #volume:hover {
     fill: #ffffff;
 }
 
-.volume-bar[data-state='hidden'] {
+.quality-drawer[data-state='hidden'] {
     display: none;
+}
+
+.quality-drawer[data-state='visible'] {
+    position: absolute;
+    background-color: rgba(0, 0, 0, .8);
+    bottom: 62;
+    right: 50;
+    padding: 12px;
+    text-align: center;
+}
+
+.bitrate-button {
+    margin: 0 auto;
+    color: #696969;
+}
+
+.bitrate-button div:hover {
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.volume-bar:hover {
+    cursor: pointer;
 }
 
 .more-social-drawer[data-state='visible'] {
@@ -356,14 +389,45 @@ svg.off:hover, svg.on:hover, #settings:hover, #volume:hover {
     margin-top: 5px;
 }
 
-.more-social-drawer div:nth-child(1) div { 
+/* UPDATE THE STYLING FOR THE DRAWERS BELOW!!! */
+.more-social-drawer div:nth-child(1) div {
     position: absolute;
-    /* display: inline-block; */
     top: 38px;
     color: white;
-    /* margin-left: 10px; */
     left: 90px;
-    /* margin-bottom: 4px; */
+}
+
+.more-social-drawer div:nth-child(2) div {
+    position: absolute;
+    top: 88px;
+    color: white;
+    left: 90px;
+}
+
+.more-social-drawer div:nth-child(3) div {
+    position: absolute;
+    top: 136px;
+    color: white;
+    left: 90px;
+}
+
+.more-social-drawer div:nth-child(4) div {
+    position: absolute;
+    top: 186px;
+    color: white;
+    left: 90px;
+}
+
+.more-social-drawer div:nth-child(5) div {
+    position: absolute;
+    top: 234px;
+    color: white;
+    left: 90px;
+}
+
+.more-social-drawer div:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 #reddit-icon {
