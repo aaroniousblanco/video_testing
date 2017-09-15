@@ -371,7 +371,7 @@ svg.off:hover, svg.on:hover, #settings:hover, #volume:hover {
     background-color: rgba(0, 0, 0, .8);
     top: 62px;
     right: 0;
-    width: 30%;
+    width: 25%;
     padding: 12px;
     height: 60%;
 }
@@ -382,42 +382,43 @@ svg.off:hover, svg.on:hover, #settings:hover, #volume:hover {
 
 .social-drawer-icons[data-state='visible'] {
     display: block;
-    margin-left: 5%;
-    margin-top: 5px;
+margin-left: 5%;
+margin-top: 3px;
+margin-bottom: 20px
 }
 
 /* UPDATE THE STYLING FOR THE DRAWERS BELOW!!! */
 .more-social-drawer div:nth-child(1) div {
     position: absolute;
-    top: 38px;
+    top: 30px;
     color: white;
     left: 90px;
 }
 
 .more-social-drawer div:nth-child(2) div {
     position: absolute;
-    top: 88px;
+    top: 84px;
     color: white;
     left: 90px;
 }
 
 .more-social-drawer div:nth-child(3) div {
     position: absolute;
-    top: 136px;
+    top: 137px;
     color: white;
     left: 90px;
 }
 
 .more-social-drawer div:nth-child(4) div {
     position: absolute;
-    top: 186px;
+    top: 189px;
     color: white;
     left: 90px;
 }
 
 .more-social-drawer div:nth-child(5) div {
     position: absolute;
-    top: 234px;
+    top: 235px;
     color: white;
     left: 90px;
 }
@@ -428,11 +429,29 @@ svg.off:hover, svg.on:hover, #settings:hover, #volume:hover {
 }
 
 #reddit-icon {
-    width: 47.6px;
-    height: 47.6px;
+    width: 37.6px;
+    height: 38.6px;
+    margin-left: -1px;
 }
 
 #pinterest-icon {
-    width: 39px;
+    width: 32px;
     height: 39px;
+    margin-left: 1px;
+}
+
+#copy-embed-icon {
+    width: 33px;
+    height: 25px;
+    margin-left: 3px;
+}
+#copy-share-link-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 3px;
+}
+#email-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 3px;
 }

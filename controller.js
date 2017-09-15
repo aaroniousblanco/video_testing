@@ -40,9 +40,12 @@
         //misc variables/functions
         let playPauseClicked = false;
         let mouseIsDown = false; //test for onmousedown event for slider functionality below
-        let volumeBarHoverTimeOut;
-        let qualityDrawerHoverTimeOut;
-        let moreSocialDrawerHoverTimeOut;
+        let volumeBarHoverTimeOut,
+            qualityDrawerHoverTimeOut,
+            moreSocialDrawerHoverTimeOut,
+            embedCode,
+            availableBitrates,
+            headline;
 
         const uiComponentVisibility = (element, mode) => {
             element.setAttribute('data-state', mode);
@@ -53,6 +56,16 @@
                 socialIconsArray[i].setAttribute('data-state', mode);
             }
         };
+        const getEmbedAndShareLink = () => {
+            for (key in anvp) {
+                if (typeof anvp[key] === "object" && anvp[key].config) {
+                    embedCode = top.cmg.anvatoConf.embedCodes[key];
+                    availableBitrates = top.cmg.anvatoConf.bitrates[key];
+                    shareLink = anvp[key].config.shareLink;
+                    headline = anvp[key].config.parentTitle;
+                }
+            }
+        }
 
         ////HIDE/SHOW LOGIC FOR UI COMPONENTS ////////////
         getElementFromClassPath('custom-ui').onmouseleave = function() { //toggles the volume slider to "hidden"
@@ -101,9 +114,10 @@
             let width = "600px",
                 height = "280px",
                 left = "400px",
-                top = "400px"
+                top = "400px";
+            getEmbedAndShareLink();
             window.open(
-            'https://www.facebook.com/share.php?u=http%3A%2F%2Fpreview-dev.ajc.com%2Fsports%2Fthis-headline%2FrVhegVlNXB2WfZBIKsNUIO%2F&title=%22This%20is%20my%20%E2%80%9CHeadline',
+            'https://www.facebook.com/share.php?u=' + shareLink,
             '_blank',
             'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
             'titlebar=no,copyhistory=no,scrollbars=yes,' +
@@ -120,9 +134,10 @@
             let width = "600px",
                 height = "280px",
                 left = "400px",
-                top = "400px"
+                top = "400px";
+            getEmbedAndShareLink();
             window.open(
-            'https://twitter.com/intent/tweet?url=http%3A%2F%2Fpreview-dev.ajc.com%2Fsports%2Fthis-headline%2FrVhegVlNXB2WfZBIKsNUIO%2F&text=%22This%20is%20my%20%E2%80%9CHeadline',
+            'https://twitter.com/intent/tweet?url=' + shareLink,
             '_blank',
             'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
             'titlebar=no,copyhistory=no,scrollbars=yes,' +
@@ -134,9 +149,10 @@
             let width = "600px",
                 height = "280px",
                 left = "400px",
-                top = "400px"
+                top = "400px";
+            getEmbedAndShareLink();
             window.open(
-            'https://pinterest.com/pin/create/button/?url=&media=&description=',
+            'https://pinterest.com/pin/create/button/?url=' + shareLink + '&media=&description=',
             '_blank',
             'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
             'titlebar=no,copyhistory=no,scrollbars=yes,' +
@@ -148,9 +164,10 @@
             let width = "600px",
                 height = "280px",
                 left = "400px",
-                top = "400px"
+                top = "400px";
+            getEmbedAndShareLink();
             window.open(
-            'https://reddit.com/submit?url=&title=',
+            'https://reddit.com/submit?url=' + shareLink + '&title=',
             '_blank',
             'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
             'titlebar=no,copyhistory=no,scrollbars=yes,' +
@@ -159,16 +176,12 @@
             );
         }
         getElementFromClassPath('email-video').onclick = function() {
+            getEmbedAndShareLink();
+            window.location = 'mailto:?Subject=' + headline + '&Body=' + shareLink;
 
         }
         getElementFromClassPath('copy-embed').onclick = function() {
-            for (key in anvp) {
-                if (typeof anvp[key] === "object" && anvp[key].config) {
-                    var embedCode = top.cmg.anvatoConf.embedCodes[key];
-                    var availableBitrates = top.cmg.anvatoConf.bitrates[key];
-                    console.log('aarontest', embedCode, availableBitrates);
-                }
-            }
+            getEmbedAndShareLink();
             function copyToClipboard(text) { //THIS IS TEMPORARY
                 window.prompt("Copy embed code to clipboard: Ctrl+C, Enter", text);
             }
