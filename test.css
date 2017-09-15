@@ -111,7 +111,6 @@
   right: 0;
   visibility: visible;
   height: 52px;
-  padding: 5px;
 }
 
 .topbar[data-state='responsive'] { /* this toggles to responsive when  */
@@ -217,6 +216,12 @@
 
 .control .time-line:hover {
   cursor: pointer;
+}
+
+.control-button-container {
+    float: right;
+    display: inline-block;
+    width: 22%;
 }
 
 
@@ -369,7 +374,7 @@ svg.off:hover, svg.on:hover, #settings:hover, #volume:hover {
 .more-social-drawer[data-state='visible'] {
     position: fixed;
     background-color: rgba(0, 0, 0, .8);
-    top: 62px;
+    top: 52px;
     right: 0;
     width: 25%;
     padding: 12px;
@@ -454,4 +459,9 @@ margin-bottom: 20px
     width: 30px;
     height: 30px;
     margin-left: 3px;
+}
+
+.invisible-copy-to-clipboard-link, .invisible-copy-to-clipboard-embed {
+    position: absolute;
+    top: 9000px;
 }

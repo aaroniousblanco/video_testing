@@ -4,9 +4,11 @@
 
 
 //Anvato variables
-    let parentElement, mediator, referenceCache = {};
-
-    let totalDuration, currentTime;
+    let parentElement,
+        mediator,
+        totalDuration,
+        currentTime,
+        referenceCache = {};
 
 //////////////BEGIN CONTROLBAR CONFIGURATION//////////////////////////
 
@@ -63,6 +65,8 @@
                     availableBitrates = top.cmg.anvatoConf.bitrates[key];
                     shareLink = anvp[key].config.shareLink;
                     headline = anvp[key].config.parentTitle;
+                    getElementFromClassPath('invisible-copy-to-clipboard-link').innerHTML = shareLink;
+                    getElementFromClassPath('invisible-copy-to-clipboard-embed').innerHTML = embedCode;
                 }
             }
         }
@@ -182,10 +186,17 @@
         }
         getElementFromClassPath('copy-embed').onclick = function() {
             getEmbedAndShareLink();
-            function copyToClipboard(text) { //THIS IS TEMPORARY
-                window.prompt("Copy embed code to clipboard: Ctrl+C, Enter", text);
-            }
-            copyToClipboard(embedCode);
+            var copyEmbedElement = getElementFromClassPath('invisible-copy-to-clipboard-embed');
+            copyEmbedElement.select();
+            var successful = document.execCommand('copy');
+            console.log('Copy to clipboard was successful? ', successful);
+        }
+        getElementFromClassPath('copy-share-link').onclick = function() {
+            getEmbedAndShareLink();
+            var copyLinkElement = getElementFromClassPath('invisible-copy-to-clipboard-link');
+            copyLinkElement.select();
+            var successful = document.execCommand('copy');
+            console.log('Copy to clipboard was successful? ', successful);
         }
         ////VOLUME SETTINGS /////////////////////////
         volumeButton.onmouseover = function() { //toggles the volume slider
@@ -343,7 +354,6 @@
         getElementFromClassPath('splash:play').onclick = function() {
             mediator.publish('playRequest', true); //play button on splash screen
         };
-
     //code block below toggles the splash play button colors; update this
     //with logic for section colors when wiring up.
         let playButtonContainer = getElementFromClassPath('play');
@@ -385,15 +395,6 @@
     Splash.prototype.buffering = function(on) {
         getElementFromClassPath('custom-ui').setAttribute('data-buffering', on ? 'on' : 'off');
     };
-
-////////////Begin EndScreen configuration ////////////////////////
-
-    // function EndScreen() {
-    //   anvp.EndScreenInterface.call(this);
-    //   this.notImplementedWarning_ = true;
-    // }
-    //
-    // EndScreen.prototype = Object.create(anvp.EndScreenInterface.prototype);
 
 //////////////Construct the CustomUI Object///////////////////////
 
@@ -443,7 +444,6 @@
             return reference;
         }
     }
-
     function sec2TimeString(sec) {
         let hour = '';
         let min = parseInt((sec / 60), 10);
@@ -464,7 +464,6 @@
         }
         return hour + min + ':' + sec;
     }
-
     function cacheImages(imageArray, onLoadFn, onErrorFn) {
         let i = 0, len = imageArray.length, images = [];
         for (; i < len; i++) {
@@ -484,7 +483,6 @@
             }
         }
     }
-
     function addEventListener(node, eventName, eventListener, useCapture) {
         if (node.addEventListener) { // W3C model
             useCapture = typeof useCapture !== 'undefined' ? useCapture : false;
@@ -493,7 +491,6 @@
             node.attachEvent('on' + eventName, eventListener);
         }
     }
-
     function getSeekIndex(e, owner) {
         let x, trueOffset, seekIndex, location = {}, ownerWidth;
         if (e.type === 'touchmove' || e.type === 'touchstart' || e.type === 'touchend') {
@@ -515,7 +512,6 @@
         location.x = x + location.left;
         return seekIndex;
     }
-
     function getSeekIndexVolume(e, owner) { //UPDATED by AW
         let y, trueOffset, seekIndex, ownerHeight;
         if (e.type === 'touchmove' || e.type === 'touchstart' || e.type === 'touchend') {
@@ -556,7 +552,6 @@
         element.setAttribute('data-display', element.style.display);
         element.style.display = 'none';
     }
-
     function show(element) {
         element.style.display = element.getAttribute('data-display') || 'block';
     }
